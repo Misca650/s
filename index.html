@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Falling Particles</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    background:transparent;
+    height:100vh;
+}
+
+#particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+}
+
+.particle{
+    position:absolute;
+    top:-20px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:white;
+    box-shadow:
+        0 0 8px rgba(255,255,255,.8),
+        0 0 18px rgba(255,255,255,.4);
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-20px);
+        opacity:1;
+    }
+    to{
+        transform:translateY(110vh);
+        opacity:.2;
+    }
+}
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+
+<script>
+const container = document.getElementById("particles");
+
+function createParticle(){
+
+    const p = document.createElement("div");
+    p.className = "particle";
+
+    const size = Math.random()*8+4;
+    const left = Math.random()*window.innerWidth;
+    const duration = Math.random()*3+2;
+
+    p.style.width = size+"px";
+    p.style.height = size+"px";
+    p.style.left = left+"px";
+    p.style.animationDuration = duration+"s";
+
+    container.appendChild(p);
+
+    p.addEventListener("animationend",()=>{
+        p.remove();
+    });
+}
+
+setInterval(createParticle,30);
+</script>
+
+</body>
+</html>
