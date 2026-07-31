@@ -61,9 +61,9 @@ function createParticle(){
     const p = document.createElement("div");
     p.className = "particle";
 
-    const size = Math.random()*4+2;
+    const size = Math.random()*2+0.5;
     const left = Math.random()*window.innerWidth;
-    const duration = Math.random()*3+2;
+    const duration = Math.random()*2+1;
 
     p.style.width = size+"px";
     p.style.height = size+"px";
